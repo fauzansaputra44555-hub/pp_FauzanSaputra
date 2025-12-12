@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio Chelsea</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+    <img src="Chelsea_FC.svg.png" alt="Logo Chelsea">
+    </div>
+
+    <div>
+      <div class="title">Fauzan Saputra </div>
+      <div style="font-size:12px;opacity:0.8">Chelsea FC — The Blues</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="intro">
+        <h1>Selamat Datang, blues !!!</h1>
+        <p class="lead">Ini adalah portfolio saya, Memperkenalkan Chelsea lengkap dengan daftar pemain & trofi.</p>
+        <div class="cta">
+        <a href="#players">Lihat Pemain</a>
+        <a href="#trophies">Lihat Trofi</a>
+        </div>
+      </div>
+      <div style="width:320px" class="panel">
+        <h3>Ringkasan</h3>
+        <p>Portofolio ini menampilkan data pemain, trofi klub, serta informasi singkat mengenai Chelsea FC.</p>
+      </div>
+    </section>
+
+    <section id="trophies" class="panel">
+      <h2>Trofi Chelsea</h2>
+      <div class="trophies" id="trophy-list"></div>
+    </section>
+
+    <section id="players" class="panel">
+      <h2>Daftar Pemain Chelsea</h2>
+      <div class="grid" id="players-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Galeri Chelsea</h2>
+      <div class="grid">
+        <div class="card"><div style="height:140px;background:url('https://via.placeholder.com/600x400?text=Stamford+Bridge') center/cover;border-radius:8px"></div><div style="margin-top:8px">Stamford Bridge</div></div>
+        <div class="card"><div style="height:140px;background:url('https://via.placeholder.com/600x400?text=Blue+Army') center/cover;border-radius:8px"></div><div style="margin-top:8px">Blue Army</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Created for Chelsea Fans • By Fauzan Saputra</footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 id="modal-name"></h3>
+        <div class="close" onclick="closeModal()">✕</div>
+      </div>
+      <p id="modal-info"></p>
+      <p id="modal-number" style="opacity:.9"></p>
+      <p style="margin-top:8px"><a id="modal-link" href="#" target="_blank">Lihat Profil Resmi</a></p>
+    </div>
+  </div>
+
+  <script>
+    const players = [
+      {number:1,name:'Robert Sánchez',pos:'GK',link:'#'},
+      {number:3,name:'Marc Cucurella',pos:'LB',link:'#'},
+      {number:4,name:'Tosin Adarabioyo',pos:'CB',link:'#'},
+      {number:5,name:'Benoît Badiashile',pos:'CB',link:'#'},
+      {number:6,name:'Levi Colwill',pos:'CB',link:'#'},
+      {number:7,name:'Pedro Neto',pos:'W/AM',link:'#'},
+      {number:8,name:'Enzo Fernández',pos:'CM',link:'#'},
+      {number:9,name:'Liam Delap',pos:'ST',link:'#'},
+      {number:10,name:'Cole Palmer',pos:'AM/CF',link:'#'},
+      {number:11,name:'Jamie Gittens',pos:'FW',link:'#'},
+      {number:12,name:'Filip Jørgensen',pos:'GK',link:'#'},
+      {number:14,name:'Dário Essugo',pos:'DM',link:'#'},
+      {number:15,name:'Nicolas Jackson',pos:'ST',link:'#'},
+      {number:17,name:'Andrey Santos',pos:'CM',link:'#'},
+      {number:18,name:'Christopher Nkunku',pos:'AM/FW',link:'#'},
+      {number:20,name:'João Pedro',pos:'ST',link:'#'},
+      {number:21,name:'Jorrel Hato',pos:'LB',link:'#'},
+      {number:23,name:'Trevoh Chalobah',pos:'CB',link:'#'},
+      {number:24,name:'Reece James',pos:'RB',link:'#'}
+    ];
+
+    const trophies = [
+      {title:'Premier League',count:6,years:['1955','2005','2006','2010','2015','2017']},
+      {title:'FA Cup',count:8,years:['1970','1997','2000','2007','2009','2010','2012','2018']},
+      {title:'EFL Cup',count:5,years:['1965','1998','2005','2007','2015']},
+      {title:'Champions League',count:2,years:['2012','2021']},
+      {title:'Europa League',count:2,years:['2013','2019']},
+      {title:'UEFA Super Cup',count:1,years:['1998']}
+    ];
+
+    const playersGrid = document.getElementById('players-grid');
+    players.forEach(p=>{
+      const card = document.createElement('div');
+      card.className='card';
+      card.innerHTML = `
+        <div class="player-photo">${p.number}</div>
+        <div class="player-name">${p.name}</div>
+        <div class="player-pos">${p.pos}</div>
+      `;
+      card.addEventListener('click',()=>openModal(p));
+      playersGrid.appendChild(card);
+    });
+
+    const trophyList = document.getElementById('trophy-list');
+    trophies.forEach(t=>{
+      const el = document.createElement('div');
+      el.className='trophy';
+      el.innerHTML = `<strong>${t.title}</strong><div>Total: ${t.count}</div><div style="font-size:13px;opacity:.85">${t.years.join(', ')}</div>`;
+      trophyList.appendChild(el);
+    });
+
+    function openModal(p){
+      document.getElementById('modal-name').innerText = p.name;
+      document.getElementById('modal-info').innerText = `Posisi: ${p.pos}`;
+      document.getElementById('modal-number').innerText = `Nomor punggung: ${p.number}`;
+      document.getElementById('modal-link').href = p.link;
+      document.getElementById('modal').classList.add('open');
+    }
+
+    function closeModal(){
+      document.getElementById('modal').classList.remove('open');
+    }
+
+    document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
+  </script>
+</body>
+</html>
