@@ -25,7 +25,7 @@ header{
   animation:slideDown .9s ease;
 }
 .logo{
-  width:64px;height:64px;border-radius:14px;
+  width:46px;height:46px;border-radius:14px;
   background:var(--light);display:flex;
   align-items:center;justify-content:center;
   color:var(--blue);font-weight:800;font-size:22px;
@@ -140,4 +140,5 @@ h1{font-size:40px;color:var(--light);animation:fadeUp .9s}
   .hero{flex-direction:column;align-items:flex-start}
 
 }
+
 
