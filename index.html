@@ -27,7 +27,13 @@
         <div class="cta">
         <a href="#players">Lihat Pemain</a>
         <a href="#trophies">Lihat Trofi</a>
-        <a href="lat_css.html">Kumpulan Tugas</a>
+        <div class="dropdown">
+            <button class="dropbtn" id="toggleDropdown">Kumpulan Tugas ▾</button>
+            <div class="dropdown-content" id="dropdownMenu">
+                <a href="form/pertemuan1.html">Praktikum Pertemuan 10</a>
+                <a href="form/pertemuan2.html">Praktikum Pertemuan 11</a>
+                <a href="form/pertemuan3.html">Praktikum Pertemuan 12</a>
+            </div>
         </div>
       </div>
       <div style="width:320px" class="panel">
@@ -186,6 +192,21 @@
     }
 
     document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
+    const toggleBtn = document.getElementById("toggleDropdown");
+const dropdownMenu = document.getElementById("dropdownMenu");
+
+toggleBtn.addEventListener("click", function () {
+    dropdownMenu.classList.toggle("show");
+});
+
+// tutup dropdown jika klik di luar
+window.addEventListener("click", function (e) {
+    if (!e.target.matches('.dropbtn')) {
+        dropdownMenu.classList.remove("show");
+    }
+});
+
   </script>
+  
 </body>
 </html>
